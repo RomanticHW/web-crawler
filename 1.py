@@ -2,6 +2,7 @@ import requests
 import datetime
 from bs4 import BeautifulSoup
 import pymysql
+#连接数据库 修改 端口 用户名 密码等（以MYSQL为例）
 db=pymysql.connect(host="localhost",user="root",password="1123",port=3306,db="test")
 cursor=db.cursor()
 import pytesseract
@@ -42,7 +43,7 @@ delta = datetime.timedelta(days=1)
 while d <= end:
 
     # 实际访问地址
-    U = 'https://www.variflight.com/flight/SZX-PEK.html?AE71649A58c77&fdate='+d.strftime('%Y%m%d')
+    U = 'https://www.variflight.com/flight/SZX-PEK.html?AE71649A58c77&fdate='+d.strftime('%Y%m%d') #SZX PEK分别为出发地与目的地 在国内机场三字代码内可寻
     rt = urllib.request.urlopen(U)
     url = U
     print(U)
@@ -61,7 +62,7 @@ while d <= end:
     html = rt.read().decode()
     imglist = re.findall('<img src="/flight/detail/([^"]+)"', html)
     ut = 'http://www.variflight.com/flight/detail/'
-    pytesseract.pytesseract.tesseract_cmd = 'D:/jTessBoxEditor/Tesseract-OCR/tesseract.exe'
+    pytesseract.pytesseract.tesseract_cmd = 'D:/jTessBoxEditor/Tesseract-OCR/tesseract.exe' #Tesseract-OCR目录 根据自己路径进行修改
     i = 0
     for img in imglist:
         i += 1
@@ -167,6 +168,7 @@ while d <= end:
             cursor.execute(sql, (a1, a2, a3, a4, a5, a6, a7, a8, a9, a10,datetime.datetime.strftime(d, '%Y-%m-%d')))
             db.commit()
     d += delta
+    time.sleep(random.random)#建议随机睡眠时间 防止频率过高
 db.close()
 
 
