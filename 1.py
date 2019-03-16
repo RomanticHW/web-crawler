@@ -111,7 +111,7 @@ while d <= end:
         if len(t):
             print(t[0].text.strip())
             a6 = t[0].text.strip()
-        # 实际起飞时间
+        # 实际到达时间
         t = soup.select('#list > li:nth-child(' + str((index + 1)) + ') > div > span:nth-child(3)')
         if t[0].text.strip() != '--':
             png = 'D://untitled1/' + str(img) + '.png'
