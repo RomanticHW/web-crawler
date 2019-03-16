@@ -62,7 +62,8 @@ while d <= end:
     html = rt.read().decode()
     imglist = re.findall('<img src="/flight/detail/([^"]+)"', html)
     ut = 'http://www.variflight.com/flight/detail/'
-    pytesseract.pytesseract.tesseract_cmd = 'D:/jTessBoxEditor/Tesseract-OCR/tesseract.exe' #Tesseract-OCR目录 根据自己路径进行修改
+    #Tesseract-OCR目录 根据自己路径进行修改
+    pytesseract.pytesseract.tesseract_cmd = 'D:/jTessBoxEditor/Tesseract-OCR/tesseract.exe' #建议使用自己训练过后的Tesseract目录，提高图像识别准确率
     i = 0
     for img in imglist:
         i += 1
