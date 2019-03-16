@@ -169,7 +169,7 @@ while d <= end:
             cursor.execute(sql, (a1, a2, a3, a4, a5, a6, a7, a8, a9, a10,datetime.datetime.strftime(d, '%Y-%m-%d')))
             db.commit()
     d += delta
-    time.sleep(random.random)#建议随机睡眠时间 防止频率过高
+    time.sleep(3)#建议随机睡眠时间 防止频率过高
 db.close()
 
 
